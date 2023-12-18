@@ -1,13 +1,18 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
+const LocalDateTime = require('@js-joda/core').LocalDateTime;
 
 const meetingSchema = new Schema({
-    phone: {
+    docId: {
         type: String,
         required: true
     },
-    name: {
+    userId: {
         type: String,
+        required: true
+    },
+    slot: {
+        type: Date,
         required: true
     }
 });
