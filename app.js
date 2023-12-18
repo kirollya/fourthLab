@@ -11,10 +11,35 @@ const Meeting = require('./models/meeting');
 const PORT = 8080;
 const db = 'mongodb://localhost:27017/fourthLab';
 
+var checkMeetings = null;
+
 mongoose
     .connect(db)
     .then((res) => {
         console.log('App was connected to DB');
+        checkMeetings = setInterval(() => {
+            Meeting
+                .find()
+                .then((meetings) => {
+                    console.log("check");
+                    const now = new Date();
+                    now.setMilliseconds(0);
+                    now.setSeconds(0);
+                    now.setTime(now.getTime() + 7200000);
+                    for (var i = 0; i < meetings.length; i++) {
+                        meetings[i].slot.setSeconds(0);
+                        meetings[i].slot.setMilliseconds(0);
+                        if (meetings[i].slot.getTime() == now.getTime()) {
+                            console.log("Запись на " + meetings[i].slot.toString() + " у ");
+                            User
+                                .findById(meetings[i].userId)
+                                .then((user) => {
+                                    console.log(user.name);
+                                });
+                        }
+                    }
+                })
+        }, 1000*60);
     })
     .catch((error) => {
         console.log(error);
