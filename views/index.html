@@ -4,6 +4,15 @@
     <title>Главная страница</title>
 </head>
 <body>
-    <a href = "localhost:8080/add">Добавить пользователя</a><br>
+    <% if (doctors.length) {%>
+        <% doctors.forEach((name, spec, slots) => {%>
+            <% = name%><br>
+            <% = spec%><br>
+            <% slots.forEach((slot) => {%>
+                <% = slot%><br>
+            <%})%>
+            <br><br>
+        <%})>
+    <%}%>    
 </body>
 </html>

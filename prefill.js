@@ -19,16 +19,16 @@ async function prefillDb() {
     var name = 'Den';
     const spec = 'Therapist'
     const slots = [
-        LocalDateTime.now().plusHours(2).plusMinutes(1),
-        LocalDateTime.now().plusHours(2).plusMinutes(2),
-        LocalDateTime.now().plusHours(2).plusMinutes(3),
-        LocalDateTime.now().plusHours(2).plusMinutes(4),
-        LocalDateTime.now().plusHours(2).plusMinutes(5),
-        LocalDateTime.now().plusHours(2).plusMinutes(6),
-        LocalDateTime.now().plusHours(2).plusMinutes(7),
-        LocalDateTime.now().plusHours(2).plusMinutes(8),
-        LocalDateTime.now().plusHours(2).plusMinutes(9),
-        LocalDateTime.now().plusHours(2).plusMinutes(10)
+        LocalDateTime.now().plusHours(0).plusMinutes(0),
+        LocalDateTime.now().plusHours(1).plusMinutes(30),
+        LocalDateTime.now().plusHours(3).plusMinutes(0),
+        LocalDateTime.now().plusHours(4).plusMinutes(30),
+        LocalDateTime.now().plusHours(6).plusMinutes(0),
+        LocalDateTime.now().plusHours(7).plusMinutes(30),
+        LocalDateTime.now().plusHours(9).plusMinutes(0),
+        LocalDateTime.now().plusHours(10).plusMinutes(30),
+        LocalDateTime.now().plusHours(12).plusMinutes(0),
+        LocalDateTime.now().plusHours(13).plusMinutes(30)
     ];
         
     const doc = new Doctor({ name, spec, slots});

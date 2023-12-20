@@ -1,0 +1,19 @@
+<!doctype html>
+<html>
+<head>
+    <title>Главная страница</title>
+</head>
+<body>
+    <% if (doctors.length) {%>
+        <% doctors.forEach(({name, spec, slots}) => {%>
+            <%= name%><br>
+            <%= spec%><br>
+            <% slots.forEach(({_date, _time}) => {%>
+                <%var {_year, _month, _day} = _date%>
+                <%= _day%>.<%= _month%> <%= _time._hour%>:<%= _time._minute%><br>
+            <%})%>
+            <br><br>
+        <%})%>
+    <%}%>    
+</body>
+</html>

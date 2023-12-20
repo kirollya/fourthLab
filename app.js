@@ -46,8 +46,9 @@ mongoose
     });
 
 const server = express();
+server.set('view engine', 'ejs');
 
-const createPath = (page) => path.resolve(__dirname, 'views', `${page}.html`)
+const createPath = (page) => path.resolve(__dirname, 'ejs-views', `${page}.ejs`)
 
 server.listen(PORT, (error) => {
     error ? console.log(error) : console.log('successful start');
@@ -56,11 +57,16 @@ server.listen(PORT, (error) => {
 server.use(express.urlencoded({extended: false}));
 
 server.get('/', (req, res) => {
-    res.sendFile(createPath('index'));
+    Doctor
+        .find()
+        .then((doctors) => {
+            console.log
+            res.render(createPath('index'), { doctors });
+        })
 });
 
 server.get('/add_user', (req, res) => {
-    res.sendFile(createPath('add_user'));
+    res.render(createPath('add_user'));
 })
 
 server.post('/add_user', (req, res) => {
@@ -69,7 +75,7 @@ server.post('/add_user', (req, res) => {
     user
         .save()
         .then((result) => {
-            res.sendFile(createPath('index'));
+            res.render(createPath('index'));
         })
         .catch((error) => {
             console.log(error);
@@ -78,7 +84,7 @@ server.post('/add_user', (req, res) => {
 });
 
 server.get('/add_meeting', (req, res) => {
-    res.sendFile(createPath('add_meeting'));
+    res.render(createPath('add_meeting'));
 });
 
 server.post('/add_meeting', (req, res) => {
@@ -91,7 +97,7 @@ server.post('/add_meeting', (req, res) => {
         meeting
             .save()
             .then((result) => {
-                res.sendFile(createPath('index'));
+                res.render(createPath('index'));
             })
             .catch((error) => {
                 console.log(error);
